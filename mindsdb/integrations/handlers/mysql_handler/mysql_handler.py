@@ -113,8 +113,7 @@ class MySQLHandler(DatabaseHandler):
         need_to_close = self.is_connected is False
 
         connection = self.connect()
-        if query.trim().startswith('i'):
-            query = query.replace('i', '', 1)
+        if query.trim().startswith('-- i'):
             query = query.replace('FROM ', 'FROM information_schema.')
         with connection.cursor(dictionary=True, buffered=True) as cur:
             try:
